@@ -2,8 +2,8 @@ var Ticker = require('tween-ticker')
 var Base = require('tween-base')
 var inherits = require('inherits')
 
-module.exports = function(target, end, opt) {
-    return new TweenChain(target, end, opt)
+module.exports = function(element, opt) {
+    return new TweenChain(element, opt)
 }
 
 function TweenChain(element, opt) {
