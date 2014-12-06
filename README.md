@@ -31,9 +31,39 @@ Features:
 - cancelling a chain cancels all the tweens it contains
 - you can `chain()` and `then()` other chains to build up complex and layered timelines
 
+Note that tweens are mutable, so timelines are not currently "reusable" -- instead, they should be wrapped in a function.
+
+```js
+function animateIn(element) {
+    return Tween(element, { opacity: 1, duration: 1 })
+        .chain(element, { radius: 5, duration: 1.5 })
+}
+```
+
 ## Usage
 
 [![NPM](https://nodei.co/npm/tween-chain.png)](https://nodei.co/npm/tween-chain/)
+
+The constructor, `chain()`, and `then()` methods all follow the same pattern as [tweenr#to](https://github.com/mattdesl/tweenr#tweenr--requiretweenropt). You can pass in a tween object (like another `tween-chain`) or `(element, opt)` to create a generic object tween.
+
+#### `tween = require('tween-chain')([element, opt])`
+
+Creates a new chain, optionally with an initial tween. 
+
+#### `tween.chain(element, opt)`
+
+Adds a tween to this chain which will be run as soon as this chain starts. Aside from individual delays, any `chain()` tweens will always run in parallel. This is mostly useful e.g. if you want to tween opacity and size with subtly different easings or timings. 
+
+#### `tween.then(element, opt)`
+
+Adds a tween which is only started once the previously added tween has completed. This allows you to build up events that trigger one after another.
+
+
+#### `tween.cancel()`
+
+Cancels this chain and its children, returning this for method chaining.
+
+If you cancel a chain, all of its children will emit `cancelling` and subsequent `complete` events on next tick. This also means that any subsequent chains waiting for this chain will then be triggered. 
 
 ## License
 

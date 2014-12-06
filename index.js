@@ -76,9 +76,10 @@ TweenChain.prototype.tick = function(dt, ease) {
     //start running any deferred tweens
     while (this.deferred.length > 0) {
         var next = this.deferred.pop()
-        next.enabled = true
+        if (!this.cancelling && this.active)
+            next.enabled = true
     }
-
+    
     if (this.cancelling && this.active) {
         this.active = false
         this.emit('cancelling', this)
@@ -89,7 +90,7 @@ TweenChain.prototype.tick = function(dt, ease) {
         this.emit('complete', this)
     }
 
-    if (!this.active)
+    if (!this.active || !this.enabled)
         return
 
     this.time += dt

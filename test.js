@@ -139,3 +139,30 @@ test('easing', function(t) {
     t.deepEqual(el, { x: 0.5, y: 0.5, z: 1 })
     t.end()
 })
+
+test('chain complex', function(t) {
+    var element = { alpha: 0, radius: 0, position: [150, 150] }
+
+    var animateIn = Tween()
+        .chain(element, { alpha: 1, duration: 1, delay: 0.0 })
+        .chain(element, { radius: 40, duration: 1, delay: 0.5 })
+
+    var animateOut = Tween()
+            .chain(element, { alpha: 0, duration: 1, delay: 0.0 })
+            .chain(element, { radius: 0, duration: 1, delay: 0.0 })
+
+    var chain = Tween()
+            .chain(animateIn)   
+            .then(animateOut)
+
+    chain.tick(0.5)
+    t.equal(element.alpha, 0.5)
+    chain.tick(0.5)
+    t.equal(element.alpha, 1)
+    chain.tick(0.5)
+    chain.tick(0.5)
+    t.equal(element.alpha, 0.5)
+    chain.tick(0.5)
+    t.equal(element.alpha, 0.0)
+    t.end()
+})
