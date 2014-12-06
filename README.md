@@ -16,12 +16,12 @@ var chain = Tween()
         .on('complete', function() {
             console.log("all tweens complete")
         })
-        
+
 //we can use tweenr to handle timing for us
 require('tweenr').to(chain)
 ```
 
-The first two tweens (on `x` and `y`) run in parallel with a slightly different delays/durations. The third tween runs *after* the previous tween is finished, so `z` won't start tweening until 2s (including its delay).
+The first two tweens (on `x` and `y`) run in parallel with a slightly different delays/durations. The third tween runs *after* the previous `y` tween is finished, so `z` won't start tweening until 2s (including its delay).
 
 Features:
 
