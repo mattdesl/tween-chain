@@ -1,0 +1,46 @@
+{
+  "name": "tween-chain",
+  "version": "1.0.0",
+  "description": "a tween timeline or chain",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "inherits": "^2.0.1",
+    "tween-base": "^2.0.0",
+    "tween-ticker": "^3.1.1"
+  },
+  "devDependencies": {
+    "tape": "^3.0.3",
+    "tween-array": "^1.0.1"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "tween",
+    "timeline",
+    "timelines",
+    "tweening",
+    "tweens",
+    "animate",
+    "animation",
+    "animated",
+    "object",
+    "array",
+    "ticker",
+    "tweenr"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/tween-chain.git"
+  },
+  "homepage": "https://github.com/mattdesl/tween-chain",
+  "bugs": {
+    "url": "https://github.com/mattdesl/tween-chain/issues"
+  }
+}
