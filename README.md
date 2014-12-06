@@ -35,7 +35,8 @@ Note that tweens are mutable, so timelines are not currently "reusable" -- inste
 
 ```js
 function animateIn(element) {
-    return Tween(element, { opacity: 1, duration: 1 })
+    return Tween()
+        .chain(element, { opacity: 1, duration: 1 })
         .chain(element, { radius: 5, duration: 1.5 })
 }
 ```
